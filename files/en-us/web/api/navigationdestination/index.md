@@ -2,18 +2,8 @@
 title: NavigationDestination
 slug: Web/API/NavigationDestination
 page-type: web-api-interface
-tags:
-  - API
-  - Experimental
-  - History
-  - Interface
-  - Landing
-  - Navigate
-  - NavigationDestination
-  - Navigation API
-  - Reference
-  - Scroll
-  - Traversal
+status:
+  - experimental
 browser-compat: api.NavigationDestination
 ---
 
@@ -27,27 +17,27 @@ It is accessed via the {{domxref("NavigateEvent.destination")}} property.
 
 ## Instance properties
 
-- {{domxref("NavigationDestination.id", "id")}} {{ReadOnlyInline}}
-  - : Returns the {{domxref("NavigationHistoryEntry.id", "id")}} value of the destination {{domxref("NavigationHistoryEntry")}} if the {{domxref("NavigateEvent.navigationType")}} is `traverse`, or `null` otherwise.
-- {{domxref("NavigationDestination.index", "index")}} {{ReadOnlyInline}}
+- {{domxref("NavigationDestination.id", "id")}} {{ReadOnlyInline}} {{Experimental_Inline}}
+  - : Returns the {{domxref("NavigationHistoryEntry.id", "id")}} value of the destination {{domxref("NavigationHistoryEntry")}} if the {{domxref("NavigateEvent.navigationType")}} is `traverse`, or an empty string otherwise.
+- {{domxref("NavigationDestination.index", "index")}} {{ReadOnlyInline}} {{Experimental_Inline}}
   - : Returns the {{domxref("NavigationHistoryEntry.index", "index")}} value of the destination {{domxref("NavigationHistoryEntry")}} if the {{domxref("NavigateEvent.navigationType")}} is `traverse`, or `-1` otherwise.
-- {{domxref("NavigationDestination.key", "key")}} {{ReadOnlyInline}}
-  - : Returns the {{domxref("NavigationHistoryEntry.key", "key")}} value of the destination {{domxref("NavigationHistoryEntry")}} if the {{domxref("NavigateEvent.navigationType")}} is `traverse`, or `null` otherwise.
-- {{domxref("NavigationDestination.sameDocument", "sameDocument")}} {{ReadOnlyInline}}
+- {{domxref("NavigationDestination.key", "key")}} {{ReadOnlyInline}} {{Experimental_Inline}}
+  - : Returns the {{domxref("NavigationHistoryEntry.key", "key")}} value of the destination {{domxref("NavigationHistoryEntry")}} if the {{domxref("NavigateEvent.navigationType")}} is `traverse`, or an empty string otherwise.
+- {{domxref("NavigationDestination.sameDocument", "sameDocument")}} {{ReadOnlyInline}} {{Experimental_Inline}}
   - : Returns `true` if the navigation is to the same `document` as the current {{domxref("Document")}} value, or `false` otherwise.
-- {{domxref("NavigationDestination.url", "url")}} {{ReadOnlyInline}}
+- {{domxref("NavigationDestination.url", "url")}} {{ReadOnlyInline}} {{Experimental_Inline}}
   - : Returns the URL being navigated to.
 
 ## Instance methods
 
-- {{domxref("NavigationDestination.getState", "getState()")}}
+- {{domxref("NavigationDestination.getState", "getState()")}} {{Experimental_Inline}}
   - : Returns a clone of the available state associated with the destination {{domxref("NavigationHistoryEntry")}}, or navigation operation (e.g. {{domxref("Navigation.navigate()", "navigate()")}}) as appropriate.
 
 ## Examples
 
 ```js
-navigation.addEventListener('navigate', (event) => {
-  // Exit early if this navigation shouldn't be intercepted, 
+navigation.addEventListener("navigate", (event) => {
+  // Exit early if this navigation shouldn't be intercepted,
   // e.g. if the navigation is cross-origin, or a download request
   if (shouldNotIntercept(event)) {
     return;
@@ -57,11 +47,11 @@ navigation.addEventListener('navigate', (event) => {
   // NavigationDestination.url value
   const url = new URL(event.destination.url);
 
-  if (url.pathname.startsWith('/articles/')) {
-   event.intercept({
+  if (url.pathname.startsWith("/articles/")) {
+    event.intercept({
       async handler() {
         // The URL has already changed, so show a placeholder while
-        //fetching the new content, such as a spinner or loading page
+        // fetching the new content, such as a spinner or loading page
         renderArticlePagePlaceholder();
 
         // Fetch the new content and display when ready
