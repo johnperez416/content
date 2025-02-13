@@ -1,15 +1,8 @@
 ---
-title: Document.activeElement
+title: "Document: activeElement property"
+short-title: activeElement
 slug: Web/API/Document/activeElement
 page-type: web-api-instance-property
-tags:
-  - API
-  - Document
-  - Focus
-  - Property
-  - Reference
-  - ShadowRoot
-  - activeElement
 browser-compat: api.Document.activeElement
 ---
 
@@ -22,8 +15,7 @@ Often `activeElement` will return a {{domxref("HTMLInputElement")}} or
 {{domxref("HTMLTextAreaElement")}} object if it has the text selection at the time. If
 so, you can get more detail by using the object's `selectionStart` and `selectionEnd` properties.
 Other times the focused element might be a {{HTMLElement("select")}} element (menu) or
-an {{HTMLElement("input")}} element, of `type` `"button"`,
-`"checkbox"`, or `"radio"`.
+an {{HTMLElement("input")}} element.
 
 Typically a user can press the tab key to move the focus around the page among
 focusable elements, and use the space bar to activate one (that is, to press a button or
@@ -31,7 +23,8 @@ toggle a radio button). Which elements are focusable varies depending on the pla
 and the browser's current configuration. For example, on macOS systems, elements that
 aren't text input elements are not typically focusable by default.
 
-> **Note:** Focus (which element is receiving user input events) is not
+> [!NOTE]
+> Focus (which element is receiving user input events) is not
 > the same thing as selection (the currently highlighted part of the document). You can
 > get the current selection using {{domxref("window.getSelection()")}}.
 
@@ -66,19 +59,20 @@ This is Text Area Two. Fusce ullamcorper, nisl ac porttitor adipiscing, urna orc
 function onMouseUp(e) {
   const activeTextarea = document.activeElement;
   const selection = activeTextarea.value.substring(
-    activeTextarea.selectionStart, activeTextarea.selectionEnd
+    activeTextarea.selectionStart,
+    activeTextarea.selectionEnd,
   );
 
-  const outputElement = document.getElementById('output-element');
-  const outputText = document.getElementById('output-text');
-  outputElement.innerHTML = activeTextarea.id;
-  outputText.innerHTML = selection;
+  const outputElement = document.getElementById("output-element");
+  const outputText = document.getElementById("output-text");
+  outputElement.textContent = activeTextarea.id;
+  outputText.textContent = selection;
 }
 
-const textarea1 = document.getElementById('ta-example-one');
-const textarea2 = document.getElementById('ta-example-two');
-textarea1.addEventListener('mouseup', onMouseUp, false);
-textarea2.addEventListener('mouseup', onMouseUp, false);
+const textarea1 = document.getElementById("ta-example-one");
+const textarea2 = document.getElementById("ta-example-two");
+textarea1.addEventListener("mouseup", onMouseUp, false);
+textarea2.addEventListener("mouseup", onMouseUp, false);
 ```
 
 ### Result

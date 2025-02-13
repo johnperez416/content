@@ -1,20 +1,31 @@
 ---
 title: Promise.race()
 slug: Web/JavaScript/Reference/Global_Objects/Promise/race
-tags:
-  - ECMAScript 2015
-  - JavaScript
-  - Method
-  - Promise
-  - Reference
+page-type: javascript-static-method
 browser-compat: javascript.builtins.Promise.race
 ---
 
 {{JSRef}}
 
-The **`Promise.race()`** method takes an iterable of promises as input and returns a single {{jsxref("Promise")}}. This returned promise settles with the eventual state of the first promise that settles.
+The **`Promise.race()`** static method takes an iterable of promises as input and returns a single {{jsxref("Promise")}}. This returned promise settles with the eventual state of the first promise that settles.
 
-{{EmbedInteractiveExample("pages/js/promise-race.html", "taller")}}
+{{InteractiveExample("JavaScript Demo: Promise.race()", "taller")}}
+
+```js interactive-example
+const promise1 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 500, "one");
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "two");
+});
+
+Promise.race([promise1, promise2]).then((value) => {
+  console.log(value);
+  // Both resolve, but promise2 is faster
+});
+// Expected output: "two"
+```
 
 ## Syntax
 
@@ -41,7 +52,7 @@ If the iterable contains one or more non-promise values and/or an already settle
 
 ### Using Promise.race()
 
-This example shows how `Promise.race()` can be used to race several timers implemented with [`setTimeout()`](/en-US/docs/Web/API/setTimeout). The timer with the shortest time always wins the race and becomes the resulting promise's state.
+This example shows how `Promise.race()` can be used to race several timers implemented with {{domxref("Window.setTimeout", "setTimeout()")}}. The timer with the shortest time always wins the race and becomes the resulting promise's state.
 
 ```js
 function sleep(time, value, state) {
@@ -74,7 +85,7 @@ Promise.race([p3, p4]).then(
   },
   (error) => {
     // Not called
-  }
+  },
 );
 
 const p5 = sleep(500, "five", "fulfill");
@@ -87,7 +98,7 @@ Promise.race([p5, p6]).then(
   (error) => {
     console.error(error.message); // "six"
     // p6 is faster, so it rejects
-  }
+  },
 );
 ```
 
@@ -224,7 +235,8 @@ setTimeout(() => {
 // { status: 'rejected', reason: 300 }
 ```
 
-> **Note:** The `promiseState` function still runs asynchronously, because there is no way to synchronously get a promise's value (i.e. without `then()` or `await`), even when it is already settled. However, `promiseState()` always fulfills within one tick and never actually waits for any promise's settlement.
+> [!NOTE]
+> The `promiseState` function still runs asynchronously, because there is no way to synchronously get a promise's value (i.e. without `then()` or `await`), even when it is already settled. However, `promiseState()` always fulfills within one tick and never actually waits for any promise's settlement.
 
 ### Comparison with Promise.any()
 

@@ -1,21 +1,28 @@
 ---
 title: Object.isExtensible()
 slug: Web/JavaScript/Reference/Global_Objects/Object/isExtensible
-tags:
-  - ECMAScript 5
-  - JavaScript
-  - JavaScript 1.8.5
-  - Method
-  - Object
+page-type: javascript-static-method
 browser-compat: javascript.builtins.Object.isExtensible
 ---
 
 {{JSRef}}
 
-The **`Object.isExtensible()`** method determines if an object
+The **`Object.isExtensible()`** static method determines if an object
 is extensible (whether it can have new properties added to it).
 
-{{EmbedInteractiveExample("pages/js/object-isextensible.html")}}
+{{InteractiveExample("JavaScript Demo: Object.isExtensible()")}}
+
+```js interactive-example
+const object1 = {};
+
+console.log(Object.isExtensible(object1));
+// Expected output: true
+
+Object.preventExtensions(object1);
+
+console.log(Object.isExtensible(object1));
+// Expected output: false
+```
 
 ## Syntax
 

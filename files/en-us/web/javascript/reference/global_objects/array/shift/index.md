@@ -1,28 +1,39 @@
 ---
 title: Array.prototype.shift()
 slug: Web/JavaScript/Reference/Global_Objects/Array/shift
-tags:
-  - Array
-  - JavaScript
-  - Method
-  - Prototype
-  - Reference
+page-type: javascript-instance-method
 browser-compat: javascript.builtins.Array.shift
 ---
 
 {{JSRef}}
 
-The **`shift()`** method removes the **first**
+The **`shift()`** method of {{jsxref("Array")}} instances removes the **first**
 element from an array and returns that removed element. This method changes the length
 of the array.
 
-{{EmbedInteractiveExample("pages/js/array-shift.html")}}
+{{InteractiveExample("JavaScript Demo: Array.shift()")}}
+
+```js interactive-example
+const array1 = [1, 2, 3];
+
+const firstElement = array1.shift();
+
+console.log(array1);
+// Expected output: Array [2, 3]
+
+console.log(firstElement);
+// Expected output: 1
+```
 
 ## Syntax
 
 ```js-nolint
 shift()
 ```
+
+### Parameters
+
+None.
 
 ### Return value
 
@@ -36,7 +47,7 @@ values at consecutive indexes down, then returns the removed value. If the
 
 The {{jsxref("Array/pop", "pop()")}} method has similar behavior to `shift()`, but applied to the last element in an array.
 
-The `shift()` method is a mutating method. It changes the length and the content of `this`. In case you want the value of `this` to be the same, but return a new array with the first element removed, you can use [`arr.slice(1)`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) instead.
+The `shift()` method is a [mutating method](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#copying_methods_and_mutating_methods). It changes the length and the content of `this`. In case you want the value of `this` to be the same, but return a new array with the first element removed, you can use [`arr.slice(1)`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) instead.
 
 The `shift()` method is [generic](/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#generic_array_methods). It only expects the `this` value to have a `length` property and integer-keyed properties. Although strings are also array-like, this method is not suitable to be applied on them, as strings are immutable.
 
@@ -48,17 +59,17 @@ The following code displays the `myFish` array before and after removing its
 first element. It also displays the removed element:
 
 ```js
-const myFish = ['angel', 'clown', 'mandarin', 'surgeon'];
+const myFish = ["angel", "clown", "mandarin", "surgeon"];
 
-console.log('myFish before:', JSON.stringify(myFish));
+console.log("myFish before:", myFish);
 // myFish before: ['angel', 'clown', 'mandarin', 'surgeon']
 
 const shifted = myFish.shift();
 
-console.log('myFish after:', myFish);
+console.log("myFish after:", myFish);
 // myFish after: ['clown', 'mandarin', 'surgeon']
 
-console.log('Removed this element:', shifted);
+console.log("Removed this element:", shifted);
 // Removed this element: angel
 ```
 
@@ -70,7 +81,7 @@ example every iteration will remove the next element from an array, until it is 
 ```js
 const names = ["Andrew", "Tyrone", "Paul", "Maria", "Gayatri"];
 
-while (typeof (i = names.shift()) !== 'undefined') {
+while (typeof (i = names.shift()) !== "undefined") {
   console.log(i);
 }
 // Andrew, Tyrone, Paul, Maria, Gayatri
@@ -108,7 +119,10 @@ console.log(plainObj);
 
 ## See also
 
+- [Indexed collections](/en-US/docs/Web/JavaScript/Guide/Indexed_collections) guide
+- {{jsxref("Array")}}
 - {{jsxref("Array.prototype.push()")}}
 - {{jsxref("Array.prototype.pop()")}}
 - {{jsxref("Array.prototype.unshift()")}}
 - {{jsxref("Array.prototype.concat()")}}
+- {{jsxref("Array.prototype.splice()")}}

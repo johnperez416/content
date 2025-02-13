@@ -1,12 +1,8 @@
 ---
-title: MutationRecord.oldValue
+title: "MutationRecord: oldValue property"
+short-title: oldValue
 slug: Web/API/MutationRecord/oldValue
 page-type: web-api-instance-property
-tags:
-  - oldValue
-  - MutationRecord
-  - Property
-  - Reference
 browser-compat: api.MutationRecord.oldValue
 ---
 
@@ -34,14 +30,14 @@ Otherwise this property is `null`.
 
 ### Show old color value
 
-In the following example, there is a button that changes the color of an `h1` to a random new color. A {{domxref("MutationObserver")}} is used to observe the target node (`h1`) for changes to the attribute; when a change is detected, the observer calls a function, `logOldValue`.
+In the following example, there is a button that changes the color of an `h1` to a random new color. A {{domxref("MutationObserver")}} is used to observe the target node (`h1`) for changes to the attribute; when a change is detected, the observer calls a function, `logOldValue()`.
 
-The `logOldValue` function is passed the `mutationRecords` array, which contains the `MutationRecord` objects. The `oldValue` property of the `MutationRecord` object is then displayed.
+The `logOldValue()` function is passed the `mutationRecords` array, which contains the `MutationRecord` objects. The `oldValue` property of the `MutationRecord` object is then displayed, in the color of the old value.
 
 #### HTML
 
 ```html
-<h1 id="h1" style="color:rgb(0, 0, 0);">Hi, Mom!</h1>
+<h1 id="h1" style="color: rgb(0 0 0);">Hi, Mom!</h1>
 <button id="changeColorButton">Change color</button>
 <p id="log"></p>
 ```
@@ -53,14 +49,10 @@ const h1 = document.getElementById("h1");
 const changeValueButton = document.getElementById("changeColorButton");
 const log = document.getElementById("log");
 
-function changeColor() {
+changeColorButton.addEventListener("click", () => {
   // Random 6 character hexadecimal number to use as the hex color value
-  const newColor = Math.floor(Math.random()*16777215).toString(16);
+  const newColor = Math.floor(Math.random() * 16777215).toString(16);
   h1.style.color = `#${newColor}`;
-}
-
-changeColorButton.addEventListener("click", function () {
-  changeColor();
 });
 
 function logOldValue(mutationRecordArray) {
@@ -73,7 +65,7 @@ function logOldValue(mutationRecordArray) {
 const observer = new MutationObserver(logOldValue);
 observer.observe(h1, {
   attributes: true,
-  attributeOldValue: true
+  attributeOldValue: true,
 });
 ```
 
